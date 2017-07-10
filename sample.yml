@@ -1,0 +1,72 @@
+# sample file
+
+# `$echo "xoxp-****" > SLACK_TOKEN` (読み込むtokenファイル)
+tokenfile: SLACK_TOKEN
+
+# codes/*.py も利用可能
+imports:
+- senkyoku
+- random
+
+# all.db にSQLiteを使ってslackのメッセージを保存するか
+logging: true
+
+# yamlなのでエイリアスを使える
+aliases:
+- &yamlbotalias
+  username:YAMLBOT
+  icon_url : https://avatars2.githubusercontent.com/u/69535?v=3&s=400
+
+# 最初の接続時に一度だけ実行
+firstConnect:
+- to : '#random'
+  text : '<< "YAMLBOT " + random.choice(["赤","青","黃","緑"]) + " を起動しました。" >>'
+  <<: *yamlbotalias
+
+# addreaction に反応できる
+addReactions:
+# :musical_note: のリアクションがあったメッセージを #karaoke に転送
+- to : '#karaoke'
+  by : ':musical_note:'
+
+
+# botからのメッセージに反応する場合はここに書く
+actionsByBotMessage:
+- find : 'karaoke\s?(.+)'
+  from : '#karaoke'
+  username : 'カラオケ選曲番号Bot'
+  text : '<<senkyoku.getEvaledKaraoke(match[0]) or "そんなものはない">>'
+  icon_emoji : ":musical_note:"
+
+# actions by user (not bot)
+actions:
+
+# 20に関連する単語に反応して 紫の鏡と返すBot
+- find : '(20|19|２０|１９|二十|十九)(歳|才)|はたち|成人'
+  text: 紫の鏡...
+  username: 紫の鏡
+  icon_url: http://kowabana.jp/system/urban_legends/105/covers/original.jpeg
+
+# ペコっぱマスター！ に反応するBot
+- find : '^(:?ぺこ|ペコ)っぱマスター！?$'
+  text : ぺこっぱマスター！
+  username: ぺこっぱマスター！
+  icon_url: http://wired.jp/wp-content/uploads/2008/06/segatoys_pekoppa-150x150.jpg
+
+# to #general hoge でどこのチャンネルからでも #general に hoge と投稿できる
+- find : '^to\s*<#(.+?)\|.+?>\s(.+)'
+  text : '<<match[0][1]>>'
+  to : '<<match[0][0]>>'
+
+
+# 以下は yamlbotに実装された機能
+# editの変更を監視して#edit-watchに流すBot
+- text: '<<"{}\n⬇ ({})\n{}".format(self.escape_uid( self.get_previous_message(info)),channel,self.escape_uid(text)) if self.is_editted_message(info) else "">>'
+  to : "#edit-watch"
+# topicの変更を監視して #topic-watchに流すBot
+- text: '<<"{}\n⬇ ({})\n{}".format(self.escape_uid(info["old_topic"],channel,info["topic"])) if "topic" in info else "">>'
+  to : "#topic-watch"
+# id hogehoge でhogehgoeさんのuidを返す
+- find : '^id\s+(.+)$'
+  text : '<<match[0]+"さんのidは "+self.get_uid_by_name(match[0])+" です！">>'
+  <<: *yamlbotalias

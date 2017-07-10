@@ -1,0 +1,6 @@
+requests
+slackclient
+PyYAML
+emoji
+sqlalchemy
+pandas

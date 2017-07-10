@@ -1,0 +1,12 @@
+*.pyc
+__pycache__/
+*TOKEN
+jsonDatas/
+.DS_Store
+*token
+*.pickle
+*.mp4
+*.ttc
+*.db
+*comment.png
+*.db.save

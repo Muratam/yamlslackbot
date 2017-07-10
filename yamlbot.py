@@ -128,8 +128,10 @@ class YamlBot(Slack72):
     def default_text(self, text, channel):
         return "`" + channel + "` " + self.escape_uid(text)
 
+    def connect(self):
+        super().connect(logging = self.yaml.get("logging",True))
 
 if __name__ == "__main__":
     assert len(sys.argv) > 1 , "argmument <yaml-path> is not configured!! \n  ex) $python3 yamlbot.py slack.yml"
-    slack = YamlBot(sys.argv[1])
-    slack.connect(logging=slack.yaml.get("logging", True))
+    YamlBot(sys.argv[1]).connect()
+

@@ -13,6 +13,13 @@ $ echo "xoxp-****" > SLACK_TOKEN
 $ python3 yamlbot.py template.yml
 ```
 
+# USE yamlbot as module
+```sh
+$ echo "from yamlbot import YamlBot\n YamlBot('hoge.yml').connect()" > hoge.py
+$ echo "...." > hoge.yml
+$ mkdir codes && echo "...." > plugin.py
+$ python3 hoge.py
+```
 
 
 # yaml memo

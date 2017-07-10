@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name = "slackyamlbot",
+    name = "yamlslackbot",
     version = "1.0.0"
-    packages=["slackyamlbot"]
+    packages=["yamlslackbot"]
 )

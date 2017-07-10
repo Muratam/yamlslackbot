@@ -8,6 +8,7 @@ Write bot code in codes/**.py
 # TRY THIS BOT
 
 ```sh
+$ git clone git@github.com:muratam/yamlslackbot.git && cd yamlslackbot
 $ pip3 install -r requirements.txt
 $ echo "xoxp-****" > SLACK_TOKEN
 $ python3 yamlbot.py template.yml

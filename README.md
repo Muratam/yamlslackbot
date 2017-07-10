@@ -3,7 +3,16 @@ Yaml customizable python slack Bot.
 Automatic save messages using SQLite !!
 Write bot code in codes/**.py
 
+# TODO: after PyPI registerd
+```sh
+# install
+$ pip3 install yamlslackbot
+# use
+$ echo "from yamlbot import YamlBot\nYamlBot('hoge.yml').connect()" > hoge.py
+$ echo "...." > hoge.yml
+$ python3 hoge.py
 
+```
 
 # TRY THIS BOT
 
@@ -16,11 +25,13 @@ $ python3 yamlbot.py template.yml
 
 # USE yamlbot as module
 ```sh
-$ echo "from yamlbot import YamlBot\n YamlBot('hoge.yml').connect()" > hoge.py
+$ echo "from yamlbot import YamlBot\nYamlBot('hoge.yml').connect()" > hoge.py
 $ echo "...." > hoge.yml
 $ mkdir codes && echo "...." > plugin.py
 $ python3 hoge.py
 ```
+
+
 
 
 # yaml memo

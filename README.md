@@ -1,7 +1,8 @@
 # description
-Yaml customizable python slack Bot.
-Automatic save messages using SQLite !!
-Write bot code in codes/**.py
+- Yaml customizable python slack Bot.
+- Automatic save messages using SQLite !!
+- Write bot code in codes/****.py
+- Execute as multiprocess !!! 
 
 # TODO: after PyPI registerd
 ```sh
